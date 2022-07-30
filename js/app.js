@@ -2,6 +2,7 @@ function LoginSuccess (response) {
 let login_body = document.getElementById(`login_body`).insertAdjacentHTML(`afterbegin`,
  `<h1>Successfully logged in</h1>`)
  Cookies.set(`Token`, `${response[`data`][`token`]}`)
+ location.href = `home.html`
 }
 
 
@@ -12,7 +13,7 @@ function LoginFail (error) {
 
 function AccountLogin (details) {
 
-let username = document.getElementById(`username`)[`value`];
+let email = document.getElementById(`username`)[`value`];
 let password = document.getElementById(`password`)[`value`];
 
 
@@ -21,8 +22,8 @@ axios.request({
 url: `https://reqres.in/api/login`,
 method: `POST`,
 data: {
-    username: `michael.lawson@reqres.in`,
-    password: `Ducks`
+    email: email,
+    password: password
 }
 
 }).then(LoginSuccess).catch(LoginFail)
